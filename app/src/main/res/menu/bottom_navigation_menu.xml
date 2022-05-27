@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_menu_main"
+        android:enabled="true"
+        android:title="뱅킹"/>
+
+    <item
+        android:id="@+id/navigation_menu_money"
+        android:enabled="true"
+        android:title="머니버스"/>
+
+    <item
+        android:id="@+id/navigation_menu_life"
+        android:enabled="true"
+        android:title="상품/서비스"/>
+
+    <item
+        android:id="@+id/navigation_menu_food"
+        android:enabled="true"
+        android:title="땡겨요"/>
+
+    <item
+        android:id="@+id/navigation_menu_menu"
+        android:enabled="true"
+        android:title="전체메뉴"/>
+</menu>
