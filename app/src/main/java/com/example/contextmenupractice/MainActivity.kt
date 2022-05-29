@@ -1,8 +1,10 @@
 package com.example.contextmenupractice
 
 import android.os.Bundle
-import android.view.*
-import android.widget.AdapterView
+import android.view.ActionMode
+import android.view.ContextMenu
+import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -11,6 +13,7 @@ import com.example.contextmenupractice.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private var actionMode: ActionMode? = null
+    private val mainAdapter: MainAdapter by lazy { MainAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,9 +21,16 @@ class MainActivity : AppCompatActivity() {
 
         // context menu 등록하기
         registerForContextMenu(binding.button)
+
+        // recyclerview set
+        setRecyclerView()
     }
 
-    override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
+    override fun onCreateContextMenu(
+        menu: ContextMenu?,
+        v: View?,
+        menuInfo: ContextMenu.ContextMenuInfo?
+    ) {
         super.onCreateContextMenu(menu, v, menuInfo)
         menuInflater.inflate(R.menu.bottom_navigation_menu, menu)
     }
@@ -41,6 +51,19 @@ class MainActivity : AppCompatActivity() {
                 super.onContextItemSelected(item)
             }
         }
+    }
+
+    private fun setRecyclerView() {
+        binding.recyclerView.adapter = mainAdapter
+        mainAdapter.setItems(
+            mutableListOf(
+                "A",
+                "B",
+                "C",
+                "D",
+                "E",
+            )
+        )
     }
 
     /*
