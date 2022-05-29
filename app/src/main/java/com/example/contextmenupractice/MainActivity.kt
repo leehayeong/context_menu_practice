@@ -20,38 +20,41 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         // context menu 등록하기
-        registerForContextMenu(binding.button)
+//        registerForContextMenu(binding.button)
 
         // recyclerview set
         setRecyclerView()
+
+        // recyclerview 에 context menu 등록하기
+        registerForContextMenu(binding.recyclerView)
     }
 
-    override fun onCreateContextMenu(
-        menu: ContextMenu?,
-        v: View?,
-        menuInfo: ContextMenu.ContextMenuInfo?
-    ) {
-        super.onCreateContextMenu(menu, v, menuInfo)
-        menuInflater.inflate(R.menu.bottom_navigation_menu, menu)
-    }
-
-    // 메뉴 아이템 선택을 성공적으로 핸들링하면 return true
-    // 성공적으로 하지 못하면 super 호출
-    // 만약에 액티비티가 프래그먼트를 포함하고 있으면, 액티비티가 가장먼저 콜백을 받음
-    // super 가 호출되었으면 디벤트를 각 프레그먼트에 pass (차례로 ture or false 를 호출할때까지..)
-    // activity 와 fragment 는 default 로 false 를 리턴하기 때문에 unhandled 되었을 때 항상 super 를 불러줘야한다,,
-    override fun onContextItemSelected(item: MenuItem): Boolean {
-//        val info = item.menuInfo as AdapterView.AdapterContextMenuInfo
-        return when (item.itemId) {
-            R.id.navigation_menu_main -> {
-                Toast.makeText(this, "홈", Toast.LENGTH_SHORT).show()
-                true
-            }
-            else -> {
-                super.onContextItemSelected(item)
-            }
-        }
-    }
+//    override fun onCreateContextMenu(
+//        menu: ContextMenu?,
+//        v: View?,
+//        menuInfo: ContextMenu.ContextMenuInfo?
+//    ) {
+//        super.onCreateContextMenu(menu, v, menuInfo)
+//        menuInflater.inflate(R.menu.bottom_navigation_menu, menu)
+//    }
+//
+//    // 메뉴 아이템 선택을 성공적으로 핸들링하면 return true
+//    // 성공적으로 하지 못하면 super 호출
+//    // 만약에 액티비티가 프래그먼트를 포함하고 있으면, 액티비티가 가장먼저 콜백을 받음
+//    // super 가 호출되었으면 디벤트를 각 프레그먼트에 pass (차례로 ture or false 를 호출할때까지..)
+//    // activity 와 fragment 는 default 로 false 를 리턴하기 때문에 unhandled 되었을 때 항상 super 를 불러줘야한다,,
+//    override fun onContextItemSelected(item: MenuItem): Boolean {
+////        val info = item.menuInfo as AdapterView.AdapterContextMenuInfo
+//        return when (item.itemId) {
+//            R.id.navigation_menu_main -> {
+//                Toast.makeText(this, "홈", Toast.LENGTH_SHORT).show()
+//                true
+//            }
+//            else -> {
+//                super.onContextItemSelected(item)
+//            }
+//        }
+//    }
 
     private fun setRecyclerView() {
         binding.recyclerView.adapter = mainAdapter
